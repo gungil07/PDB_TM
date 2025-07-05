@@ -21,12 +21,12 @@ def fetch_released_pdb_ids(since_date):
 
     response = requests.post(url, json=query)
     if response.status_code != 200:
-        print(f"❌ Failed to fetch from RCSB ({response.status_code})")
+        print(f"Failed to fetch from RCSB ({response.status_code})")
         return []
 
     data = response.json()
     pdb_ids = [item["identifier"] for item in data.get("result_set", [])]
-    print(f"✅ Found {len(pdb_ids)} PDB entries since {since_date}")
+    print(f"Found {len(pdb_ids)} PDB entries since {since_date}")
     return pdb_ids
 
 def save_to_csv(pdb_data_list, output_file):
@@ -36,4 +36,4 @@ def save_to_csv(pdb_data_list, output_file):
         writer.writeheader()
         for row in pdb_data_list:
             writer.writerow(row)
-    print(f"📁 Metadata saved to: {output_file}")
+    print(f"Metadata saved to: {output_file}")
