@@ -5,7 +5,7 @@ def fetch_metadata(pdb_id, save_dir):
     url = f"https://data.rcsb.org/rest/v1/core/entry/{pdb_id}"
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"⚠️ Failed to fetch metadata for {pdb_id}")
+        print(f"Failed to fetch metadata for {pdb_id}")
         return None
 
     data = response.json()
